@@ -31,9 +31,16 @@ func main() {
 	}
 
 	for {
-		if gameIsOver(gs.b) != NullPlayer {
+		n := gameIsOver(gs.b)
+		if n != NullPlayer {
 			printBoard(gs.b)
+			fmt.Printf("Le joueur %d a gagné", n+1)
 
+			break
+		}
+		if isNull(gs.b) {
+			printBoard(gs.b)
+			println("Partie nulle")
 			break
 		}
 	TurnLoop:
@@ -61,6 +68,17 @@ func gameIsOver(b Board) Player {
 		return Player2
 	}
 	return NullPlayer
+}
+
+func isNull(b Board) bool {
+	for i := 0; i < lines; i++ {
+		for j := 0; j < columns; j++ {
+			if b[i][j] == NullPlayer {
+				return false
+			}
+		}
+	}
+	return true
 }
 func printBoard(b Board) {
 	println("| 0 | 1 | 2 | 3 | 4 | 5 | 6 |\n" + strings.Repeat("-", 30))
