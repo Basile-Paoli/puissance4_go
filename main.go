@@ -15,6 +15,9 @@ const (
 	Player1    Player = 0
 	Player2    Player = 1
 )
+const Reset = "\033[0m"
+const Red = "\033[31m"
+const Blue = "\033[34m"
 
 type Board [lines][columns]Player
 type GameState struct {
@@ -90,10 +93,10 @@ func printBoard(b Board) {
 				c = "."
 				break
 			case Player1:
-				c = "X"
+				c = Red + "X" + Reset
 				break
 			case Player2:
-				c = "O"
+				c = Blue + "O" + Reset
 				break
 			}
 			fmt.Printf("| %s ", c)
